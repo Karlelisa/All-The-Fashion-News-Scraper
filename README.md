@@ -1,1 +1,1 @@
-# All-The-News
+# All-The-Fashion-News-Scraper
