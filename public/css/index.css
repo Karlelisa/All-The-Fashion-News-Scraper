@@ -1,0 +1,143 @@
+body {
+    /* background-color: white; */
+    background-image: url("../images/paris-vogue-runway.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+
+h1,
+h2 {
+    font-family: 'Old Standard TT', serif;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 195px;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+h2 {
+    font-style: italic;
+}
+
+p {
+    font-weight: bold;
+    background-color: white;
+    border: 2px solid white;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 15px #bec3ce;
+}
+
+.nav-link {
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    top: 20px;
+}
+
+.nav-link:hover {
+    border: 2px solid black;
+    /* background-color: white; */
+    padding: 3px 3px 3px 3px;
+}
+
+
+#wrapper {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 14%;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+
+#articles {
+    display: inline-block;
+    /* overflow: auto; */
+    /* width: 60%; */
+    width: 960px;
+    height: 700px;
+}
+
+#notes {
+    /* float: right; */
+    /* width: 60%; */
+    align-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+textarea,
+input {
+    /* display: block; */
+    display: inline-block;
+    width: 100%;
+    background-color: white;
+}
+
+input {
+    height: 36px;
+    font-size: 24px;
+}
+
+textarea {
+    height: 200px;
+    font-size: 18px;
+}
+
+/* .fa {
+    transform: scale(1.5, 1);
+} */
+
+#show-scrapes-btn {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+
+}
+
+#savenote {
+    margin-right: 20px;
+}
+
+.videoFrame {
+    width: 100%;
+    align-content: center;
+}
+
+.videoFrame iframe {
+    margin-top: 10px;
+    display: inline-block;
+    /* width: 560px; */
+}
+
+.modal-content {
+    background-image: url("../images/paris-vogue-runway.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.modal-footer {
+    display: block;
+    text-align: center;
+    /* float: left; */
+}
+
+#closeModal {
+    color: white;
+    align-content: center;
+    font-weight: bold;
+    border: 3px solid white;
+}
