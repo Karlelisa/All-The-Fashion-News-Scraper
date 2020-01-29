@@ -1,2 +1,2 @@
 # All-The-Fashion-News-Scraper
-# Vogue - The latest fashion news
+# Vogue Scraper - The Latest Fashion News
