@@ -1,9 +1,10 @@
 body {
     /* background-color: white; */
-    background-image: url("../images/paris-vogue-runway.jpg");
+    /* background-image: url("../images/paris-vogue-runway.jpg"); */
+    background-image: url("../images/background-blue-blue-black-fade-dark-blue.jpg");
+    /* background-color: black; */
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-position: center; */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -28,13 +29,48 @@ h2 {
     font-style: italic;
 }
 
+h5 {
+    font-family: 'Old Standard TT', serif;
+    text-align: center;
+    font-style: italic;
+    margin-left: 195px;
+}
+
 p {
+    font-family: 'Old Standard TT', serif;
+    font-size: 23px;
     font-weight: bold;
     background-color: white;
     border: 2px solid white;
     padding: 20px;
-    border-radius: 25px;
     box-shadow: 5px 5px 15px #bec3ce;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+
+
+}
+
+p img {
+    border: 3px solid white;
+    /* border-radius: 25px; */
+    box-shadow: 5px 5px 15px #bec3ce;
+    /* height: 296px; */
+    float: left;
+    height: 260px;
+    margin-top: -1px;
+}
+
+
+.fixed-top {
+    /* background-color: rgba(0, 0, 0, .2); */
+    border: 2px solid white;
+    box-shadow: 0px 0px 10px 4px;
+    /* background-image: url("../images/2nd-paris-vogue-runway.jpg"); */
+    /* background-color: black; */
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
 }
 
 .nav-link {
@@ -42,6 +78,7 @@ p {
     padding-right: 10px;
     position: relative;
     top: 20px;
+    color: black;
 }
 
 .nav-link:hover {
@@ -59,6 +96,9 @@ p {
     justify-content: center;
     align-content: stretch;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 #articles {
@@ -95,15 +135,16 @@ textarea {
     font-size: 18px;
 }
 
-/* .fa {
-    transform: scale(1.5, 1);
-} */
 
 #show-scrapes-btn {
     width: 960px;
     margin-left: auto;
     margin-right: auto;
     outline: none;
+    font-weight: bold;
+    /* background-color: #00f3ff; */
+    /* border: 3px solid white; */
+    box-shadow: 0 0 15px #024ab8;
 
 }
 
@@ -140,4 +181,50 @@ textarea {
     align-content: center;
     font-weight: bold;
     border: 3px solid white;
+}
+
+
+/* Media Queries */
+
+@media only screen and (max-width:768px) {
+    #wrapper {
+        width: 600px;
+
+    }
+
+    .nav-link {
+        display: flex;
+    }
+
+    #home-nav {
+        margin-left: 250px;
+    }
+
+    #four-modes-img {
+        width: 600px;
+    }
+
+    .videoFrame iframe {
+        margin-top: 10px;
+        display: inline-block;
+        width: 600px;
+    }
+
+}
+
+@media only screen and (max-width:600px) {
+    #wrapper {
+        width: 400px;
+
+    }
+
+    #four-modes-img {
+        width: 400px;
+    }
+
+    .videoFrame iframe {
+
+        display: inline-block;
+        width: 400px;
+    }
 }

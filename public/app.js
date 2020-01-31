@@ -3,32 +3,47 @@
 
 $(document).ready(function () {
 
+    $(document).on("click", "#show-scrapes-btn", function () {
+
+        // Grab the articles as a json
+        $.getJSON("/articles", function (data) {
+            // For each one
+            for (let i = 0; i < data.length; i++) {
+                // Display the apropos information on the page
+                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>");
+                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>" + "< button id = 'addNote' > Add Note < /button>" + "<br />");
+
+                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "Click Here to Add a Note</p>");
+
+                // $("#articles").append("<p data-id='" + data[i]._id + "'></p>" + "<h4>" + data[i].title + "</h4>" + "<br />" +
+                //     "<a href='" + data[i].link + "'>" + data[i].link + "</a>" + "<br />" +
+                //     "<img src='" + data[i].image + " '/>" + "<br />" +
+                //     "< button id = 'addNote' > Add Note < /button>" + "<br />"
+                // );
+
+                $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + data[i].title + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
+
+                // $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
+
+                // $("#articles").forEach.prepend()
+
+
+                console.log("Image:", data[i].image)
+            }
+        });
+
+        // "<button class='delete btn btn-primary'><p> Add Note</p></button>",
+        // "<button class='saveArticle btn btn-primary'>Save Article</button>",
+
+
+    });
     // $("#show-scrapes-btn").on("click", function () {
     //     console.log("i'm clicked");
     //     $("#articles").append("<h3> I want to work for VOGUE </h3>");
 
     // });
 
-    // Grab the articles as a json
-    $.getJSON("/articles", function (data) {
-        // For each one
-        for (let i = 0; i < data.length; i++) {
-            // Display the apropos information on the page
-            // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-            // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>");
-            // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>" + "< button id = 'addNote' > Add Note < /button>" + "<br />");
-
-            $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "Click Here to Add a Note</p>");
-
-            // $("#articles").append("<p data-id='" + data[i]._id + "'></p>" + "<h4>" + data[i].title + "</h4>" + "<br />" +
-            //     "<a href='" + data[i].link + "'>" + data[i].link + "</a>" + "<br />" +
-            //     "<img src='" + data[i].image + " '/>" + "<br />" +
-            //     "< button id = 'addNote' > Add Note < /button>" + "<br />"
-            // );
-
-            console.log("Image:", data[i].image)
-        }
-    });
 
 
     // Whenever someone clicks a p tag
@@ -55,7 +70,8 @@ $(document).ready(function () {
                 $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
                 // A button to submit a new note, with the id of the article saved to it
                 $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='btn btn-dark'>Save Note</button>");
-                $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Note</button>");
+                $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Note</button>");
+                // $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Note</button>");
                 $("#addNotesModal").modal('toggle');
 
                 // If there's a note in the article
@@ -90,6 +106,7 @@ $(document).ready(function () {
                 console.log(data);
                 // Empty the notes section
                 $("#notes").empty();
+                $("#addNotesModal").modal("hide");
             });
 
         // Also, remove the values entered in the input and textarea for note entry
@@ -99,19 +116,39 @@ $(document).ready(function () {
 
 
 
+
+
+    //delete a note
+    // $(document).on("click", "#deleteNote", function () {
+    //     var thisId = $(this).attr("data-id");
+    //     $.ajax({
+    //             method: "DELETE",
+    //             url: "/articles/" + thisId
+    //         })
+    //         .then(function (data) {
+    //             // Log the response
+    //             console.log(data);
+    //             $("#titleinput").val("");
+    //             $("#bodyinput").val("");
+    //             $("#addNotesModal").modal("hide");
+    //         });
+    // });
+
+
+
     // Delete Note button
-    $("#deleteNote").on("click", function () {
+    $(document).on("click", "#deleteNote", function () {
         console.log("Delete Button Is Clicked")
         let noteId = $(this).attr("data-note-id");
         let articleId = $(this).attr("data-article-id");
         $.ajax({
             method: "DELETE",
-            url: "/notes/delete/" + noteId + articleId
-            // url: "/notes/delete/" + noteId + "/" + articleId
+            // url: "/notes/delete/" + noteId + articleId
+            url: "/notes/delete/" + noteId + "/" + articleId
         }).done(function (data) {
             console.log(data)
-            $("#titleinput").val("");
-            $("#bodyinput").val("");
+            // $("#titleinput").val("");
+            // $("#bodyinput").val("");
             $("#addNotesModal").modal("hide");
             // window.location.href = "/savedArticles"
         })
@@ -120,6 +157,35 @@ $(document).ready(function () {
 
 
 
+    // When user clicks the delete button for a note
+    // $(document).on("click", "#deleteNote", function () {
+    //     console.log("Delete btn clicked")
+    //     // Save the p tag that encloses the button
+    //     let noteId = $(this).attr("data-note-id");
+
+    //     // Make an AJAX GET request to delete the specific note
+    //     // this uses the data-id of the p-tag, which is linked to the specific note
+    //     $.ajax({
+    //         method: "DELETE",
+    //         url: "/delete/" + noteId,
+
+    //         // On successful call
+    //         success: function (response) {
+    //             // Remove the p-tag from the DOM
+    //             selected.remove();
+    //             // Clear the note and title inputs
+    //             $("#titleinput").val("");
+    //             $("#bodyinput").val("");
+    //             $("#addNotesModal").modal("hide");
+    //         }
+    //     });
+    // });
+
+    function todaysDate() {
+        let date = new Date();
+        document.getElementById("todays-date").innerHTML = date.toDateString();
+    }
+    todaysDate();
 
 
 

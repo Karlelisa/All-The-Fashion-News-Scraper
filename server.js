@@ -1,84 +1,5 @@
 // // Dependencies
-// let express = require("express");
-// let mongojs = require("mongojs");
-// // Require axios and cheerio. This makes the scraping possible
-// let axios = require("axios");
-// let cheerio = require("cheerio");
 
-// // Initialize Express
-// let app = express();
-
-// // Database configuration
-// let databaseUrl = "scraper";
-// let collections = ["scrapedData"];
-
-// // Hook mongojs configuration to the db variable
-// let db = mongojs(databaseUrl, collections);
-// db.on("error", function (error) {
-//   console.log("Database Error:", error);
-// });
-
-// // Main route (simple Hello World Message)
-// app.get("/", function (req, res) {
-//   res.send("Hello world");
-// });
-
-// // Retrieve data from the db
-// app.get("/all", function (req, res) {
-//   // Find all results from the scrapedData collection in the db
-//   db.scrapedData.find({}, function (error, found) {
-//     // Throw any errors to the console
-//     if (error) {
-//       console.log(error);
-//     }
-//     // If there are no errors, send the data to the browser as json
-//     else {
-//       res.json(found);
-//     }
-//   });
-// });
-
-// // Scrape data from one site and place it into the mongodb db
-// app.get("/scrape", function (req, res) {
-//   // Make a request via axios for the news section of `ycombinator`
-//   axios.get("https://www.vogue.com/").then(function (response) {
-//     // Load the html body from axios into cheerio
-//     let $ = cheerio.load(response.data);
-//     // For each element with a "title" class
-//     $(".title").each(function (i, element) {
-//       // Save the text and href of each link enclosed in the current element
-//       let title = $(element).children("a").text();
-//       let link = $(element).children("a").attr("href");
-
-//       // If this found element had both a title and a link
-//       if (title && link) {
-//         // Insert the data in the scrapedData db
-//         db.scrapedData.insert({
-//             title: title,
-//             link: link
-//           },
-//           function (err, inserted) {
-//             if (err) {
-//               // Log the error if one is encountered during the query
-//               console.log(err);
-//             } else {
-//               // Otherwise, log the inserted data
-//               console.log(inserted);
-//             }
-//           });
-//       }
-//     });
-//   });
-
-//   // Send a "Scrape Complete" message to the browser
-//   res.send("Scrape Complete");
-// });
-
-
-// // Listen on port 3000
-// app.listen(8070, function () {
-//   console.log("App running on port 8070!");
-// });
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,7 +75,7 @@ app.get("/scrape", function (req, res) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     let $ = cheerio.load(response.data);
 
-    // Now, we grab every h2 within an article tag, and do the following:
+    // Now, we grab every article tag, and do the following:
     $("article").each(function (i, element) {
       // Save an empty result object
       let result = {};
@@ -181,13 +102,12 @@ app.get("/scrape", function (req, res) {
         });
     });
 
-
-
     // Send a message to the client
     res.send("Scrape Complete");
 
   });
 });
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
@@ -247,10 +167,28 @@ app.post("/articles/:id", function (req, res) {
     });
 });
 
+
+
+
+//Route for deleting a note
+// app.delete("/articles/:id", function (req, res) {
+//   db.Note.deleteOne({
+//       _id: req.params.id
+//     })
+//     .then(function (removed) {
+//       res.json(removed);
+//     }).catch(function (err, removed) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//     });
+// });
+
 // Delete a note
 app.delete('/notes/delete/:note_id/:article_id', function (req, res) {
+  const id = req.params.id;
   db.Note.findOneAndRemove({
-    _id: req.params.note_id
+    _id: mongoose.Schema.ObjectId(id)
+    // _id: req.params.note_id
   }, function (err) {
     if (err) {
       console.log(err);
@@ -275,6 +213,20 @@ app.delete('/notes/delete/:note_id/:article_id', function (req, res) {
   });
 });
 
+
+// app.delete('/delete/:id', (req, res) => {
+//   const id = req.params.id;
+//   db.Note.findOneAndRemove({
+//     _id: mongoose.ObjectId(id) // id = 12345 => ObjectId('12345')
+//     // _id: req.params.note_id
+//   }, (err, removed) => {
+//     if (err) {
+//       console.log(err)
+//     } else {
+//       res.send("Note Deleted", removed)
+//     }
+//   })
+// })
 
 
 
