@@ -34,9 +34,6 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
 
 // Make public a static folder
 app.use(express.static("public"));
@@ -49,20 +46,6 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/unit18Populater", {
   useNewUrlParser: true
 });
-
-
-// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-// mongoose.connect(MONGODB_URI);
-
-// Routes
-
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "../public/index.html"));
-// });
-// app.get("/savedArticles", function (req, res) {
-//   res.sendFile(path.join(__dirname, "../public/savedArticles.html"));
-// });
 
 
 // A GET route for scraping the vogue website
@@ -109,7 +92,7 @@ app.get("/scrape", function (req, res) {
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({})
+  db.Article.find({}).limit(10)
     .then(function (dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
@@ -164,40 +147,11 @@ app.post("/articles/:id", function (req, res) {
     });
 });
 
-//Route for deleting a note
-// app.delete("/notes/delete/:id", function (req, res) {
-//   db.Note.deleteOne({
-//       _id: req.params.id
-//     })
-//     .then(function (removed) {
-//       res.json(removed);
-//     }).catch(function (err, removed) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//     });
-// });
 
-
-//Route for deleting a note
-// app.delete("/notes/delete/:id", function (req, res) {
-//   db.Note.deleteOne({
-//       _id: req.params.id
-//     })
-//     .then(function (removed) {
-//       res.json(removed);
-//     }).catch(function (err, removed) {
-//       // If an error occurred, send it to the client
-//       res.json(err);
-//     });
-// });
-
-
-// SOMEWHAT WORKING //////////////////////////////////
 // Delete a note
 app.delete('/notes/delete/:note_id/:article_id', function (req, res) {
-  // const id = req.params.id;
+
   db.Note.findOneAndRemove({
-    // _id: mongoose.Schema.ObjectId(id)
     _id: req.params.note_id
   }, function (err) {
     if (err) {
@@ -222,24 +176,6 @@ app.delete('/notes/delete/:note_id/:article_id', function (req, res) {
     }
   });
 });
-
-
-// app.delete('/delete/:id', (req, res) => {
-//   const id = req.params.id;
-//   db.Note.findOneAndRemove({
-//     _id: mongoose.ObjectId(id) // id = 12345 => ObjectId('12345')
-//     // _id: req.params.note_id
-//   }, (err, removed) => {
-//     if (err) {
-//       console.log(err)
-//     } else {
-//       res.send("Note Deleted", removed)
-//     }
-//   })
-// })
-
-
-
 
 
 
