@@ -63,14 +63,8 @@ p img {
 
 
 .fixed-top {
-    /* background-color: rgba(0, 0, 0, .2); */
     border: 2px solid white;
     box-shadow: 0px 0px 10px 4px;
-    /* background-image: url("../images/2nd-paris-vogue-runway.jpg"); */
-    /* background-color: black; */
-    /* background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; */
 }
 
 .nav-link {
@@ -103,15 +97,11 @@ p img {
 
 #articles {
     display: inline-block;
-    /* overflow: auto; */
-    /* width: 60%; */
     width: 960px;
     height: 700px;
 }
 
 #notes {
-    /* float: right; */
-    /* width: 60%; */
     align-content: center;
     text-align: center;
     padding: 20px;
@@ -143,9 +133,8 @@ textarea {
     outline: none;
     font-weight: bold;
     font-size: 21px;
-    /* background-color: #00f3ff; */
-    /* border: 3px solid white; */
     box-shadow: 0 0 15px #024ab8;
+    font-family: 'Old Standard TT', serif;
 
 }
 

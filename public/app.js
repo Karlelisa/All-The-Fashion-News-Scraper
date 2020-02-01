@@ -5,35 +5,40 @@ $(document).ready(function () {
 
     $(document).on("click", "#show-scrapes-btn", function () {
 
-        // Grab the articles as a json
-        $.getJSON("/articles", function (data) {
-            // For each one
-            for (let i = 0; i < data.length; i++) {
-                // Display the apropos information on the page
-                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>");
-                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>" + "< button id = 'addNote' > Add Note < /button>" + "<br />");
+        $.ajax({
+            url: "/scrape",
+            method: "GET"
+        }).then(() => { // Grab the articles as a json
+            $.getJSON("/articles", function (data) {
+                // For each one
+                for (let i = 0; i < data.length; i++) {
+                    // Display the apropos information on the page
+                    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+                    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>");
+                    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br />" + data[i].image + "</p>" + "< button id = 'addNote' > Add Note < /button>" + "<br />");
 
-                // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "Click Here to Add a Note</p>");
+                    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "Click Here to Add a Note</p>");
 
-                // $("#articles").append("<p data-id='" + data[i]._id + "'></p>" + "<h4>" + data[i].title + "</h4>" + "<br />" +
-                //     "<a href='" + data[i].link + "'>" + data[i].link + "</a>" + "<br />" +
-                //     "<img src='" + data[i].image + " '/>" + "<br />" +
-                //     "< button id = 'addNote' > Add Note < /button>" + "<br />"
-                // );
+                    // $("#articles").append("<p data-id='" + data[i]._id + "'></p>" + "<h4>" + data[i].title + "</h4>" + "<br />" +
+                    //     "<a href='" + data[i].link + "'>" + data[i].link + "</a>" + "<br />" +
+                    //     "<img src='" + data[i].image + " '/>" + "<br />" +
+                    //     "< button id = 'addNote' > Add Note < /button>" + "<br />"
+                    // );
 
-                $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + data[i].title + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Comment</button>" + "</p>");
+                    $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + data[i].title + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='addNote btn btn-dark'>Add Comment</button>" + "</p>");
 
-                // $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
+                    // $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
 
-                // $("#articles").forEach.prepend()
+                    // $("#articles").forEach.prepend()
 
 
-                console.log("Image:", data[i].image)
-            }
+                    console.log("Image:", data[i].image)
+                };
+
+            });
+
+
         });
-
-
     });
 
 
@@ -41,6 +46,7 @@ $(document).ready(function () {
 
     // Whenever someone clicks a p tag
     $(document).on("click", "p", function () {
+        console.log("Add note button clicked")
         // Empty the notes from the note section
         $("#notes").empty();
         // Save the id from the p tag
@@ -63,8 +69,8 @@ $(document).ready(function () {
                 $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
                 // A button to submit a new note, with the id of the article saved to it
                 $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='btn btn-dark'>Save Comment</button>");
-                // $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Note</button>");
-                $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
+                // $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
+                // $("#notes").append("<button data-id='" + data.note._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
                 $("#addNotesModal").modal('toggle');
 
                 // If there's a note in the article
@@ -73,6 +79,7 @@ $(document).ready(function () {
                     $("#titleinput").val(data.note.title);
                     // Place the body of the note in the body textarea
                     $("#bodyinput").val(data.note.body);
+                    $("#notes").append("<button data-id='" + data.note._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
                 }
             });
     });
@@ -153,10 +160,11 @@ $(document).ready(function () {
 
     // SOMEWHAT WORKING //////////////////////////////////////
     // Delete Note button
-    $(document).on("click", "#deleteNote", function () {
+    $(document).on("click", "#deleteNote", function (e) {
+        e.preventDefault()
         console.log("Delete Note Button Is Clicked")
-        let noteId = $(this).attr("data-note-id");
-        let articleId = $(this).attr("data-article-id");
+        let noteId = $(this).attr("data-id");
+        let articleId = $(this).attr("data-id");
         $.ajax({
             method: "DELETE",
             // url: "/notes/delete/" + noteId + articleId
@@ -173,6 +181,10 @@ $(document).ready(function () {
         $("#titleinput").val("");
         $("#bodyinput").val("");
     });
+
+
+
+
 
 
 
@@ -250,6 +262,7 @@ $(document).ready(function () {
     //         }
     //     });
     // });
+
 
 
 
