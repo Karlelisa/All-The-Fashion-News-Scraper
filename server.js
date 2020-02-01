@@ -1,9 +1,6 @@
+// Cited In Class Activity: https://harvard.bootcampcontent.com/Harvard-Coding-Boot-Camp/hu-cam-fsf-pt-09-2019-u-c/blob/master/Week_18/01-Activities/11-Scraping-into-a-db/Unsolved/server.js
+
 // // Dependencies
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 let express = require("express");
 let logger = require("morgan");
 let mongoose = require("mongoose");
@@ -60,12 +57,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/unit18Populater
 
 // Routes
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-app.get("/savedArticles", function (req, res) {
-  res.sendFile(path.join(__dirname, "../public/savedArticles.html"));
-});
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../public/index.html"));
+// });
+// app.get("/savedArticles", function (req, res) {
+//   res.sendFile(path.join(__dirname, "../public/savedArticles.html"));
+// });
 
 
 // A GET route for scraping the vogue website
@@ -167,11 +164,8 @@ app.post("/articles/:id", function (req, res) {
     });
 });
 
-
-
-
 //Route for deleting a note
-// app.delete("/articles/:id", function (req, res) {
+// app.delete("/notes/delete/:id", function (req, res) {
 //   db.Note.deleteOne({
 //       _id: req.params.id
 //     })
@@ -183,12 +177,28 @@ app.post("/articles/:id", function (req, res) {
 //     });
 // });
 
+
+//Route for deleting a note
+// app.delete("/notes/delete/:id", function (req, res) {
+//   db.Note.deleteOne({
+//       _id: req.params.id
+//     })
+//     .then(function (removed) {
+//       res.json(removed);
+//     }).catch(function (err, removed) {
+//       // If an error occurred, send it to the client
+//       res.json(err);
+//     });
+// });
+
+
+// SOMEWHAT WORKING //////////////////////////////////
 // Delete a note
 app.delete('/notes/delete/:note_id/:article_id', function (req, res) {
-  const id = req.params.id;
+  // const id = req.params.id;
   db.Note.findOneAndRemove({
-    _id: mongoose.Schema.ObjectId(id)
-    // _id: req.params.note_id
+    // _id: mongoose.Schema.ObjectId(id)
+    _id: req.params.note_id
   }, function (err) {
     if (err) {
       console.log(err);
