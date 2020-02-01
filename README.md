@@ -2,7 +2,7 @@
 # Vogue Scraper - The Latest Fashion News
 
 ## Description
-Whenever a user visits the Vogue Scraper site, the app scrapes stories from Vogue and displays them for the user. Each scraped article is saved to my MongoDB. My app scrapes and displays the following information for each article:
+Whenever a user visits the Vogue Scraper site, the app scrapes stories from vogue.com and displays them for the user. Each scraped article is saved to my MongoDB. My app scrapes and displays the following information for each article:
 
 
 * Headline - the title of the article
@@ -27,3 +27,14 @@ Click on the below link to view my Vogue Scraper App.
 
 
 ## My Screenshots
+
+
+![My Vogue Scraper home page screenshot](/public/images/cover-page-readme.png)
+
+
+
+![My Vogue Scraper home page with articles screenshot](/public/images/readme-article-images.png)
+
+
+
+
