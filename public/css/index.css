@@ -1,8 +1,5 @@
 body {
-    /* background-color: white; */
-    /* background-image: url("../images/paris-vogue-runway.jpg"); */
     background-image: url("../images/background-blue-blue-black-fade-dark-blue.jpg");
-    /* background-color: black; */
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -47,20 +44,15 @@ p {
     text-align: center;
     align-content: center;
     align-items: center;
-
-
 }
 
 p img {
     border: 3px solid white;
-    /* border-radius: 25px; */
     box-shadow: 5px 5px 15px #bec3ce;
-    /* height: 296px; */
     float: left;
     height: 260px;
     margin-top: -1px;
 }
-
 
 .fixed-top {
     border: 2px solid white;
@@ -77,10 +69,8 @@ p img {
 
 .nav-link:hover {
     border: 2px solid black;
-    /* background-color: white; */
     padding: 3px 3px 3px 3px;
 }
-
 
 #wrapper {
     width: 960px;
@@ -109,7 +99,6 @@ p img {
 
 textarea,
 input {
-    /* display: block; */
     display: inline-block;
     width: 100%;
     background-color: white;
@@ -125,7 +114,6 @@ textarea {
     font-size: 18px;
 }
 
-
 #show-scrapes-btn {
     width: 960px;
     margin-left: auto;
@@ -135,7 +123,6 @@ textarea {
     font-size: 21px;
     box-shadow: 0 0 15px #024ab8;
     font-family: 'Old Standard TT', serif;
-
 }
 
 #savenote {
@@ -163,7 +150,6 @@ textarea {
 .modal-footer {
     display: block;
     text-align: center;
-    /* float: left; */
 }
 
 #closeModal {
@@ -205,7 +191,6 @@ textarea {
 @media only screen and (max-width:600px) {
     #wrapper {
         width: 400px;
-
     }
 
     #four-models-img {
