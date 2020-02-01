@@ -63,8 +63,8 @@ $(document).ready(function () {
                 $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
                 // A button to submit a new note, with the id of the article saved to it
                 $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='btn btn-dark'>Save Comment</button>");
-                $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Note</button>");
-                // $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
+                // $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Note</button>");
+                $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
                 $("#addNotesModal").modal('toggle');
 
                 // If there's a note in the article
