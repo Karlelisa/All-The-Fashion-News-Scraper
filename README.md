@@ -28,11 +28,11 @@ Click on the below link to view my Vogue Scraper App.
 
 ## My Screenshots
 
-
+### My Vogue Scraper Home Page
 ![My Vogue Scraper home page screenshot](/public/images/cover-page-readme.png)
 
 
-
+### My Vogue Scraper Home Page Displaying Articles
 ![My Vogue Scraper home page with articles screenshot](/public/images/readme-article-images.png)
 
 
