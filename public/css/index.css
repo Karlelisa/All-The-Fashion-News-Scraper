@@ -18,7 +18,7 @@ h2 {
     font-family: 'Old Standard TT', serif;
     font-weight: bold;
     text-align: center;
-    margin-left: 195px;
+    margin-left: 165px;
 }
 
 h1 {
@@ -33,7 +33,7 @@ h5 {
     font-family: 'Old Standard TT', serif;
     text-align: center;
     font-style: italic;
-    margin-left: 195px;
+    margin-left: 165px;
 }
 
 p {
@@ -142,6 +142,7 @@ textarea {
     margin-right: auto;
     outline: none;
     font-weight: bold;
+    font-size: 21px;
     /* background-color: #00f3ff; */
     /* border: 3px solid white; */
     box-shadow: 0 0 15px #024ab8;
@@ -200,7 +201,7 @@ textarea {
         margin-left: 250px;
     }
 
-    #four-modes-img {
+    #four-models-img {
         width: 600px;
     }
 
@@ -218,7 +219,7 @@ textarea {
 
     }
 
-    #four-modes-img {
+    #four-models-img {
         width: 400px;
     }
 

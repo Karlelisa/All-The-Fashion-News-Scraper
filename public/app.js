@@ -22,7 +22,7 @@ $(document).ready(function () {
                 //     "< button id = 'addNote' > Add Note < /button>" + "<br />"
                 // );
 
-                $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + data[i].title + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
+                $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + data[i].title + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Comment</button>" + "</p>");
 
                 // $("#articles").prepend("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "<br />" + "<img src='" + data[i].image + " '/>" + "<br />" + "<br />" + "<a href='" + data[i].link + "'target='blank'>" + data[i].link + "</a>" + "<br />" + "<br />" + "<button class='delete btn btn-dark'>Add Note</button>" + "</p>");
 
@@ -33,16 +33,9 @@ $(document).ready(function () {
             }
         });
 
-        // "<button class='delete btn btn-primary'><p> Add Note</p></button>",
-        // "<button class='saveArticle btn btn-primary'>Save Article</button>",
-
 
     });
-    // $("#show-scrapes-btn").on("click", function () {
-    //     console.log("i'm clicked");
-    //     $("#articles").append("<h3> I want to work for VOGUE </h3>");
 
-    // });
 
 
 
@@ -69,9 +62,9 @@ $(document).ready(function () {
                 // A textarea to add a new note body
                 $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
                 // A button to submit a new note, with the id of the article saved to it
-                $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='btn btn-dark'>Save Note</button>");
+                $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='btn btn-dark'>Save Comment</button>");
                 $("#notes").append("<button id='deleteNote' class='btn btn-dark'>Delete Note</button>");
-                // $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Note</button>");
+                // $("#notes").append("<button data-id='" + data._id + "' id='deleteNote' class='btn btn-dark'>Delete Comment</button>");
                 $("#addNotesModal").modal('toggle');
 
                 // If there's a note in the article
@@ -115,30 +108,53 @@ $(document).ready(function () {
     });
 
 
+    // // When user clicks the delete button for a note
+    // $(document).on("click", "#deleteNote", function () {
+    //     // Save the p tag that encloses the button
+    //     var selected = $(this).parent();
+    //     // Make an AJAX GET request to delete the specific note
+    //     // this uses the data-id of the p-tag, which is linked to the specific note
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "/notes/delete/" + selected.attr("data-id"),
+
+    //         // On successful call
+    //         success: function (response) {
+    //             // Remove the p-tag from the DOM
+    //             selected.remove();
+    //             // Clear the note and title inputs
+    //             // $("#titleinput").val("");
+    //             // $("#bodyinput").val("");
+    //             // Make sure the #action-button is submit (in case it's update)
+    //             $("#addNotesModal").modal("hide");
+    //         }
+    //     });
+    // });
 
 
 
     //delete a note
     // $(document).on("click", "#deleteNote", function () {
-    //     var thisId = $(this).attr("data-id");
+    //     console.log("Delete Note Button Is Clicked")
+    //     let thisId = $(this).attr("data-id");
     //     $.ajax({
     //             method: "DELETE",
-    //             url: "/articles/" + thisId
+    //             url: "/delete" + thisId
     //         })
     //         .then(function (data) {
     //             // Log the response
     //             console.log(data);
-    //             $("#titleinput").val("");
-    //             $("#bodyinput").val("");
+    //             // $("#titleinput").val("");
+    //             // $("#bodyinput").val("");
     //             $("#addNotesModal").modal("hide");
     //         });
     // });
 
 
-
+    // SOMEWHAT WORKING //////////////////////////////////////
     // Delete Note button
     $(document).on("click", "#deleteNote", function () {
-        console.log("Delete Button Is Clicked")
+        console.log("Delete Note Button Is Clicked")
         let noteId = $(this).attr("data-note-id");
         let articleId = $(this).attr("data-article-id");
         $.ajax({
@@ -149,9 +165,13 @@ $(document).ready(function () {
             console.log(data)
             // $("#titleinput").val("");
             // $("#bodyinput").val("");
+            $("#notes").empty();
             $("#addNotesModal").modal("hide");
             // window.location.href = "/savedArticles"
         })
+        // Also, remove the values entered in the input and textarea for note entry
+        $("#titleinput").val("");
+        $("#bodyinput").val("");
     });
 
 
@@ -181,11 +201,55 @@ $(document).ready(function () {
     //     });
     // });
 
+    // Cited: W3schools
     function todaysDate() {
         let date = new Date();
         document.getElementById("todays-date").innerHTML = date.toDateString();
     }
     todaysDate();
+
+
+
+    // Save an article
+    // app.post('/articles/save/:id', function (req, res) {
+    //     db.Article.findOneAndUpdate({
+    //             _id: req.params.id
+    //         }, {
+    //             saved: true
+    //         })
+    //         .then(function (dbArticle) {
+    //             res.json(dbArticle);
+    //         })
+    //         .catch(function (err) {
+    //             res.json(err);
+    //         });
+    // });
+
+    // Delete an article
+    // app.post('/articles/delete/:id', function (req, res) {
+    //     db.Article.findOneAndUpdate({
+    //         _id: req.params.id
+    //     }, {
+    //         saved: false,
+    //         notes: []
+    //     }, function (err) {
+    //         if (err) {
+    //             console.log(err);
+    //             res.end(err);
+    //         } else {
+    //             db.Note.deleteMany({
+    //                     article: req.params.id
+    //                 })
+    //                 .exec(function (err) {
+    //                     if (err) {
+    //                         console.log(err);
+    //                         res.end(err);
+    //                     } else
+    //                         res.send("Article Deleted");
+    //                 });
+    //         }
+    //     });
+    // });
 
 
 
