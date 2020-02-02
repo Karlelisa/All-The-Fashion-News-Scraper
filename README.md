@@ -23,7 +23,9 @@ Users are able to leave comments on the articles displayed and revisit them late
 
 
 ## My Heroku App Link
-Click on the below link to view my Vogue Scraper App.
+Click on the below link to view my Vogue Scraper App. Once on the app, click on the Click Here To Show The Articles button.
+
+https://secure-waters-36345.herokuapp.com/
 
 
 ## My Screenshots
